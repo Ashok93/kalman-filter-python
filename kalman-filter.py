@@ -53,12 +53,14 @@ if __name__ == "__main__":
 
     state = np.transpose(np.array([0,0,0.002]))
     ip = np.array([1,0.01])
-    output = state
+    output = None
     
     # Covariance matrices
     sigmax = 1
     sigmay = 1
     sigmatheta = 0.1
+
+    # Tuning parameters
     P = np.diag([sigmax**2, sigmay**2, sigmatheta**2])
     SigmaState = np.diag([0.01, 0.01, 0.007]) #uncertainity in state
     SigmaOutput = np.diag([0.1,0.1,0]) #uncertainity in measurement
