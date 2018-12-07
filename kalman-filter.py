@@ -36,9 +36,10 @@ class KalmanFilter:
         self.P = P
     
     def predict(self, state):
-        self.state = next_state(self.state, self.ip) + np.random.normal([1,1,0], [1, 1, 0.001], 3)
+        self.state = next_state(self.state, self.ip) + np.random.normal([1,1,0], [0.8, 0.8, 0.001], 3)
         self.P = self.A*self.P*np.transpose(A) + self.SigmaState
         self.output = C.dot(self.state)
+        return self.state
 
     def estimate(self, measurement):
         Kalman_gain = self.P*np.transpose(C) * np.linalg.pinv((C*self.P*np.transpose(C) + SigmaOutput))
@@ -63,10 +64,11 @@ if __name__ == "__main__":
     # Tuning parameters
     P = np.diag([sigmax**2, sigmay**2, sigmatheta**2])
     SigmaState = np.diag([0.01, 0.01, 0.007]) #uncertainity in state
-    SigmaOutput = np.diag([0.1,0.1,0]) #uncertainity in measurement
+    SigmaOutput = np.diag([0.1,0.1,0]) #uncertainity in measurement - How much you believe in ur measurement
 
     odometry, gps, perfect_world = mock_odo_gps_data(state, ip)
     kal_out = []
+    odo_out = []
 
     kal_filter = KalmanFilter(state, ip)
 
@@ -79,8 +81,8 @@ if __name__ == "__main__":
         D = np.zeros((2,2))
 
         kal_filter.set_kalman_matrices(A,B,C,D,P,SigmaState,SigmaOutput)
-        kal_filter.predict(odo)
+        odo_out.append(kal_filter.predict(odo))
         state, output = kal_filter.estimate(gps[idx])
         kal_out.append(output)
 
-    plot_results(odometry, gps, perfect_world, kal_out)
+    plot_results(odo_out, gps, perfect_world, kal_out)
