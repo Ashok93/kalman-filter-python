@@ -1,6 +1,5 @@
 import math
 import numpy as np
-import cv2 as cv
 import matplotlib.pyplot as plt
 
 from state_evolution import next_state
