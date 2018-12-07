@@ -1,15 +1,18 @@
 import numpy as np
 from state_evolution import next_state
 
-def mock_odo_gps_data():
-    state = np.array([0,0,0.0002])
-    ip = np.array([1,0.01])
+def mock_odo_gps_data(state, ip):
     odo = []
     gps = []
+    perfect_world = []
 
-    for i in range(100):
+    for _ in range(100):
         state = next_state(state, ip) # state update
-        odo.append(state + np.random.normal(0, 0.1, 3)) # odo estimate is bad
-        gps.append(state + np.random.normal(0, 0.001, 3)) # gps estimate is much better
+        perfect_world.append(state)
+        odo.append(state + np.random.normal([0,0,0], [0.2, 0.2, 0.001], 3)) # odo estimate is bad
+        gps.append(state + np.random.normal([0,0,0], [0.1, 0.1, 0], 3)) # gps estimate is much better
 
-    return odo, gps
+    return odo, gps, perfect_world
+
+def generate_cirular_traj_ips():
+    print("Test")

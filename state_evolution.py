@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 '''
 
@@ -16,4 +17,4 @@ def next_state(prev_state, ip):
     y_next = prev_state[1] + ip[0] * math.acos(prev_state[2])
     theta_next = prev_state[2] + ip[1]
 
-    return [x_next, y_next, theta_next]
+    return np.transpose(np.array([x_next, y_next, theta_next]))
