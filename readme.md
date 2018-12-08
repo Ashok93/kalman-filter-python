@@ -9,5 +9,5 @@ A simulated scenario where we consider a robot in 2D and use odometry for predic
 
 Just run `kalman-filter.py` file. You must see the results
 
-![alt text](https://github.com/Ashok93/kalman-filter-python/blob/master/results/plot.png"Image")
-![alt text](https://github.com/Ashok93/kalman-filter-python/blob/master/results/plot_zoomed.png"ZoomedImage")
+![alt text](https://github.com/Ashok93/kalman-filter-python/blob/master/results/plot.png)
+![alt text](https://github.com/Ashok93/kalman-filter-python/blob/master/results/plot_zoomed.png)
