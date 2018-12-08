@@ -6,10 +6,10 @@ def mock_odo_gps_data(state, ip):
     gps = []
     perfect_world = []
 
-    for _ in range(100):
+    for _ in range(50):
         state = next_state(state, ip) # state update
         perfect_world.append(state)
-        odo.append(state + np.random.normal([0,0,0], [0.2, 0.2, 0.001], 3)) # odo estimate is bad
+        odo.append(state + np.random.normal([0,0,0], [0.1, 0.1, 0.001], 3)) # odo estimate is bad
         gps.append(state + np.random.normal([0,0,0], [0.05, 0.05, 0], 3)) # gps estimate is much better
 
     return odo, gps, perfect_world

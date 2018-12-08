@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # Tuning parameters
     P = np.diag([sigmax**2, sigmay**2, sigmatheta**2])
     SigmaState = np.diag([0.01, 0.01, 0.007]) #uncertainity in state
-    SigmaOutput = np.diag([0.2,0.2,0]) #uncertainity in measurement - How much you believe in ur measurement
+    SigmaOutput = np.diag([0.1,0.1,0]) #uncertainity in measurement - How much you believe in ur measurement
 
     odometry, gps, perfect_world = mock_odo_gps_data(state, ip)
     kal_out = []
